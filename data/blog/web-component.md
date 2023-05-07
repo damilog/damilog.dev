@@ -6,6 +6,8 @@ draft: false
 summary: Web Component의 개념과 이를 구성하는 주요 기술을 살펴보자.
 ---
 
+# 들어가며
+
 `컴포넌트`는 React, Vue 등의 SPA 라이브러리를 사용해본 개발자에겐 익숙한 개념일텐데요.
 Web API에도 HTML 태그를 컴포넌트로 다룰 수 있는 기술이 있습니다.
 
