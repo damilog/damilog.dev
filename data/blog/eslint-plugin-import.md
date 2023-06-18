@@ -1,9 +1,9 @@
 ---
-title: Eslint 사용하여 `import` 순서 자동 정렬 하기
+title: Eslint 사용하여 import 순서 자동 정렬 하기
 date: '2023-06-18'
 tags: ['Eslint']
 draft: false
-summary: Eslint의 eslint-plugin-import를 사용하여 `import` 순서 규칙을 생성하는 방법을 알아봅니다.
+summary: Eslint의 eslint-plugin-import를 사용하여 import 순서 규칙을 생성하는 방법을 알아봅니다.
 ---
 
 # 들어가며
