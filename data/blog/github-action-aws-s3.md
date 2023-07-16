@@ -90,44 +90,33 @@ Repositoryh 내 Actions 탭으로 이동하여 좌측 상단의 New workflow 버
 배포 스크립트를 작성해줍니다.
 
 ```yml
-name: Deploy to Production
-
-on:
+name: deploy # Workflow 이름
+on: # Event 감지
   push:
     branches:
       - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-18.04
+jobs: # Job 설정
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@master
+      - name: Checkout source code. # Repo checkout
+        uses: actions/checkout@v3
 
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
+      - name: Check Node v # Node v 확인
+        run: node -v
 
-      - name: Install Dependencies
+      - name: Install dependencies # 의존 파일 설치
         run: npm install
 
-      - name: Build
+      - name: Generate build # React Build
         run: npm run build
 
-      - name: Deploy
+      - name: Deploy # Upload build file to S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp \
-            --recursive \
-            --region ap-northeast-2 \
-            build s3://앞서 생성한 s3 주소
+          aws s3 cp --recursive --region ap-northeast-2 build s3://생성한 s3 버킷 주소
 ```
 
 이제 모든 준비는 끝났습니다. 리액트 프로젝트를 수정 후 빌드한 뒤 target이 되는 브랜치에 push하여 s3 배포까지 정상적으로 되는지 확인해봅니다.
