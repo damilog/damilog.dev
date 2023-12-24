@@ -77,7 +77,7 @@ summary: 2023년 회고입니다.
 
 좋은 멘토, 코드 리뷰어가 되기 위해 역량 향상에 힘썼습니다. 짧은 시간에 긍정적인 영향을 줘야 하는 역할이기에, 혹여 제 말 한 마디가 부정적인 영향을 주진 않을까 고민하며 피드백을 전하도록 노력했습니다. 누군가에게 긍정적인 영향을 줬던 경험을 기록하며, 보람을 느끼는 시간을 가지겠습니다. (뿌듯)
 
-![](https://velog.velcdn.com/images/dami/post/09e2e005-e62c-4b46-8453-f5e1d6b2a58d/image.png)![](https://velog.velcdn.com/images/dami/post/6dea419e-cfe2-4f7c-ae96-108ab3f3139e/image.png)![](https://velog.velcdn.com/images/dami/post/8c4f1f7c-0d2f-4750-80ca-4d5adb7ffbf3/image.png)![](https://velog.velcdn.com/images/dami/post/aa518f23-2c4b-4579-9cc0-7ed14d0e5f07/image.png)
+![](https://velog.velcdn.com/images/dami/post/6b032279-457d-4bf8-9849-8cfa248f1aee/image.png)
 
 이외에도 스터디, 글쓰기, 회고 활동으로 지식과 경험을 공유하는 활동에서도 좋은 영향을 줄 수 있는 사람이 되고자 했습니다.
 
