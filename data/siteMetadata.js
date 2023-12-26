@@ -5,11 +5,11 @@ const siteMetadata = {
   description: 'Technical posts written by Dami Kim',
   language: 'ko-kr',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://damilog.vercel.app',
   siteRepo: 'https://github.com/damilog',
   siteLogo: '/static/images/face.png',
   image: '/static/images/face.png',
-  socialBanner: '/static/images/twitter-card.png',
+  socialBanner: '/static/images/blog-main.png',
   email: 'dami.k.dev@gmail.com',
   github: 'https://github.com/damilog',
   linkedin: 'https://www.linkedin.com/in/dev-dami',
