@@ -188,7 +188,7 @@ it('로그인 버튼이 화면에 보이고 클릭 가능한지 확인한다.', 
 ```
 
 또한 Testing Library는 DOM 요소를 검색할 때 HTML 구조에 의존하지 않기 때문에 버튼의 id와 같이 DOM 구조가 변경되는 상황에도 유연하게 작동합니다.
-Testing Library는 `getByText`외에도 `findBy`, `findAllBy`, `queryBy` 등과 같이 DOM에 접근에 유용한 직관적인 이름의 메서드를 제공합니다.
+Testing Library는 `getByText`외에도 `findBy`, `findAllBy`, `queryBy` 등과 같이 DOM에 접근에 유용하고, 또 직관적인 이름을 가진 메서드를 제공합니다.
 
 ## 마치며
 
