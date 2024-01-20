@@ -1,5 +1,5 @@
 ---
-title: Cypress 코드 작성할 때 유용한 4가지 개념
+title: Cypress 코드 작성 시 유용한 4가지 개념
 date: '2024-01-19'
 tags: ['Cypress']
 draft: false
