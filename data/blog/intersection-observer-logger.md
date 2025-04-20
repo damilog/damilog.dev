@@ -12,7 +12,7 @@ summary: 뷰포트 기반 로그 전송 설계한 경험을 공유합니다.
 기존에는 모든 상품 정보를 하나의 API 응답으로 받아 렌더링했지만,
 효율성을 높이기 위해 일부 영역을 별도의 API로 분리하는 작업을 진행하였고, 이에 따라 기존 로그를 전송한 뒤 지연 로딩된 영역의 로그를 추가로 전송할 수 있는 기능이 필요해졌습니다.
 
-![상품 정보 중 지연 로딩 영역 확인](../images/intersection-observer-logger/img2.png)
+![상품 정보 중 지연 로딩 영역 확인](/static/images/intersection-observer-logger/img2.png)
 
 사내 로그 라이브러리의 동작 방식은 다음과 같습니다.
 
@@ -52,7 +52,7 @@ useEffect(() => {
 
 위 코드에서처럼 root는 직접 설정할 수 있으며, null로 지정하면 브라우저의 뷰포트가 기준이 됩니다.
 
-![상품 리스팅 영역의 뷰포트](../images/intersection-observer-logger/image.png)
+![상품 리스팅 영역의 뷰포트](/static/images/intersection-observer-logger/img1.png)
 
 그렇다면, 단순히 상품을 뷰포트 관찰 대상에 등록만 하면 끝일까요? 아쉽게도 그렇지 않았습다.
 
