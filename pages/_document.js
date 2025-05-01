@@ -28,6 +28,10 @@ class MyDocument extends Document {
             name="google-site-verification"
             content="_bmvxUpf2zeZYRZ77BTGeGpF-kqmaMz05OJCE0FrcsA"
           />
+          <meta
+            name="google-site-verification"
+            content="jA1dWRZUQ-D67oRimBMdkCxByUDn2JMDsZOyQz_IQBc"
+          />
         </Head>
         <body className="bg-white text-black antialiased dark:bg-gray-900 dark:text-white">
           <Main />
