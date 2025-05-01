@@ -89,7 +89,7 @@ pm2로 무중단 배포까지 적용하여 다음과 같은 구조로 구성해�
 # AWS 환경에서는 어떻게 구성할까?
 
 AWS에서도 앞서 확인한 SSR 인프라 구조와 유사하게, 정적 자산과 SSR 서버를 분리하여 구성할 수 있습니다.
-![Next.js 인프라 구성 예시 pm2](/static/images/nextjs-ssr-infrastructure/next-aws.png)
+![Next.js 인프라 구성 예시 pm2](/static/images/nextjs-ssr-infrastructure/nextjs-aws.png)
 
 - 정적 자산(public, .next/static 등)은 S3 + CloudFront를 통해 캐싱 및 전송 속도를 최적화할 수 있고,
 - SSR 요청은 **Application Load Balancer(ALB)**를 통해 트래픽을 분산한 뒤,
