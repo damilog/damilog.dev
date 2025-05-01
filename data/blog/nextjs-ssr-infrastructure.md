@@ -60,26 +60,27 @@ Next.js는 SSR, ISR, SSG 등 다양한 렌더링 방식을 지원합니다.
 사용자가 서비스에 접속하면, 브라우저의 요청은 L4 로드밸런서를 거쳐 IP/PORT 기준으로 각 웹서버에 분산됩니다.  
 웹서버에서는 nginx가 동작하며, 정적 파일을 직접 서빙하거나 SSR 요청을 Node.js 서버로 프록시합니다.
 
-이때 nginx는 upstream 설정에 따라 여러 Node.js SSR 서버에게 트래픽을 **라운드 로빈 방식(Round Robin)**으로 분산하게 됩니다.
+이때 nginx는 upstream 설정에 따라 여러 Node.js SSR 서버에게 트래픽을 `라운드 로빈 방식(Round Robin)`으로 분산하게 됩니다.
 ![라운드 로빈](https://i0.wp.com/nginxstore.com/wp-content/uploads/2023/04/image-14.png?w=685&ssl=1)
 
-> 참고: https://nginxstore.com/blog/nginx/nginx-%EB%A1%9C%EB%93%9C-%EB%B0%B8%EB%9F%B0%EC%8B%B1-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC/
+<small>참고: https://nginxstore.com/blog/nginx/nginx-%EB%A1%9C%EB%93%9C-%EB%B0%B8%EB%9F%B0%EC%8B%B1-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC/</small>
 
 라운드 로빈(Round Robin)은 NGINX에서 사용되는 기본(Default) 로드 밸런싱 알고리즘인데요. 위 사진에서 가이드는 각 대기열을 순서대로 선택합니다. 첫 번째 여행자는 대기열 A로 안내되고, 다음 여행자는 대기열 B로 안내되는 식의 방식으로 트래픽을 분산합니다.
 
 그럼 Node.js 서버에서는 Next.js가 어떻게 구동되고 있을까요? 만약 배포가 이루어질 때마다 Next.js 서버를 직접 종료하고 다시 실행한다면, 그 사이 사용자에게는 오류 페이지나 빈 화면이 노출될 수 있습니다.
 
-이러한 문제를 막기 위해서는 서비스를 중단 없이, 즉 **무중단 배포** 방식으로 운영할 수 있는 구조가 필요합니다. 이때 사용하는 프로세스 매니저가 바로 pm2입니다.
+이러한 문제를 막기 위해서는 서비스를 중단 없이, 즉 무중단 배포 방식으로 운영할 수 있는 구조가 필요합니다. 이때 사용하는 프로세스 매니저가 바로 pm2입니다.
 ![pm2 클러스터](https://ryanschiang.com/_next/image?url=%2Fimages%2Fpm2-cluster-zero-downtime.jpg&w=1920&q=75)
+<small>참고: https://ryanschiang.com/pm2-cluster-zero-downtime
+</small>
 
-> 참고: https://ryanschiang.com/pm2-cluster-zero-downtime
-
-pm2는 Node.js 애플리케이션의 프로세스를 관리해주는 툴인데요. 단순히 앱을 실행하는 데 그치지 않고, 장애 발생 시 자동 재시작, 로그 관리, 메모리/CPU 모니터링, 그리고 가장 중요한 **클러스터 모드(cluster mode)**까지 지원합니다.
+pm2는 Node.js 애플리케이션의 프로세스를 관리해주는 툴인데요. 단순히 앱을 실행하는 데 그치지 않고, 장애 발생 시 자동 재시작, 로그 관리, 메모리/CPU 모니터링, 그리고 가장 중요한 `클러스터 모드(cluster mode)`까지 지원합니다.
 
 클러스터 모드는 하나의 Node.js 서버(예: 포트 3000)를 기준으로, 내부적으로 여러 개의 워커 프로세스를 생성해 요청을 병렬로 처리할 수 있도록 합니다.
 마스터 프로세스가 클라이언트 요청을 받아,각 워커 프로세스로 라운드로빈 방식으로 분산 처리합니다.
 
 pm2로 무중단 배포까지 적용하여 다음과 같은 구조로 구성해봤습니다.
+
 ![Next.js 인프라 구성 예시 pm2](/static/images/nextjs-ssr-infrastructure/next-infra-2.png)
 
 정리해보자면, Next.js의 SSR을 안정적으로 운영하기 위해서는 정적 자산 서빙하는 서버와 SSR 요청을 처리하는 서버를 분리하고, pm2를 활용한 클러스터 구성으로 무중단 배포와 병렬 처리까지 고려한 인프라 설계가 필요합니다.
@@ -92,7 +93,7 @@ AWS에서도 앞서 확인한 SSR 인프라 구조와 유사하게, 정적 자�
 ![Next.js 인프라 구성 예시 pm2](/static/images/nextjs-ssr-infrastructure/nextjs-aws.png)
 
 - 정적 자산(public, .next/static 등)은 S3 + CloudFront를 통해 캐싱 및 전송 속도를 최적화할 수 있고,
-- SSR 요청은 **Application Load Balancer(ALB)**를 통해 트래픽을 분산한 뒤,
+- SSR 요청은`Application Load Balancer(ALB)`를 통해 트래픽을 분산한 뒤,
 - EC2 인스턴스에서 Next.js 앱을 실행하여 응답을 생성합니다.
 
 이때, EC2 내부에서는 기존과 마찬가지로 pm2를 활용해 여러 인스턴스를 클러스터 모드로 실행할 수 있습니다.
@@ -106,6 +107,5 @@ pm2를 사용하면 AWS 환경에서도 무중단 배포가 가능하며, 클라
 # 마치며
 
 지금까지 IDC 환경에서의 SSR 인프라 구성부터, AWS 환경에서 어떻게 구성할 수 있을지까지 간단히 정리해봤습니다.
-
 아직 익숙하진 않지만, 이번 기회에 공부한 내용을 정리하면서 인프라 구조에 대한 감이 조금씩 잡혀가는 느낌이 들었습니다.
 앞으로 실제 인프라 운영 경험이 쌓이면, 그 이야기도 따로 정리해보겠습니다. 이 글이 저처럼 SSR이나 인프라 구성을 처음 접하는 분들께 도움이 되었으면 좋겠네요!
