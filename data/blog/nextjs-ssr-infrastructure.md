@@ -63,7 +63,7 @@ Next.js는 SSR, ISR, SSG 등 다양한 렌더링 방식을 지원합니다.
 이때 nginx는 upstream 설정에 따라 여러 Node.js SSR 서버에게 트래픽을 `라운드 로빈 방식(Round Robin)`으로 분산하게 됩니다.
 ![라운드 로빈](https://i0.wp.com/nginxstore.com/wp-content/uploads/2023/04/image-14.png?w=685&ssl=1)
 
-<small>참고: https://nginxstore.com/blog/nginx/nginx-%EB%A1%9C%EB%93%9C-%EB%B0%B8%EB%9F%B0%EC%8B%B1-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC/</small>
+참고: https://nginxstore.com/blog/nginx/nginx-%EB%A1%9C%EB%93%9C-%EB%B0%B8%EB%9F%B0%EC%8B%B1-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC/
 
 라운드 로빈(Round Robin)은 NGINX에서 사용되는 기본(Default) 로드 밸런싱 알고리즘인데요. 위 사진에서 가이드는 각 대기열을 순서대로 선택합니다. 첫 번째 여행자는 대기열 A로 안내되고, 다음 여행자는 대기열 B로 안내되는 식의 방식으로 트래픽을 분산합니다.
 
@@ -71,8 +71,7 @@ Next.js는 SSR, ISR, SSG 등 다양한 렌더링 방식을 지원합니다.
 
 이러한 문제를 막기 위해서는 서비스를 중단 없이, 즉 무중단 배포 방식으로 운영할 수 있는 구조가 필요합니다. 이때 사용하는 프로세스 매니저가 바로 pm2입니다.
 ![pm2 클러스터](https://ryanschiang.com/_next/image?url=%2Fimages%2Fpm2-cluster-zero-downtime.jpg&w=1920&q=75)
-<small>참고: https://ryanschiang.com/pm2-cluster-zero-downtime
-</small>
+참고: https://ryanschiang.com/pm2-cluster-zero-downtime
 
 pm2는 Node.js 애플리케이션의 프로세스를 관리해주는 툴인데요. 단순히 앱을 실행하는 데 그치지 않고, 장애 발생 시 자동 재시작, 로그 관리, 메모리/CPU 모니터링, 그리고 가장 중요한 `클러스터 모드(cluster mode)`까지 지원합니다.
 
