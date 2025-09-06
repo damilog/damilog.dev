@@ -49,7 +49,7 @@ JSP, PHP 등 서버 렌더링 기반의 전통적인 웹 환경에서는 브라�
 
 단일 API만 호출하거나, 페이지 전체가 무한 스크롤로 구현된 페이지라면 스크롤 복원은 비교적 단순합니다. 하지만 아래 그림처럼 영역마다 호출하는 API가 다르고, 호출 시점도 제각각이라면 이야기가 달라집니다.
 
-![복잡한 페이지 렌더링 구조](/public/static/images/scroll-restoration/render-area.png)
+![복잡한 페이지 렌더링 구조](/static/images/scroll-restoration/render-area.png)
 
 예를 들어 A, B 영역은 각각 별도의 API 응답에 의존하고, B 영역은 더보기 버튼을 눌러야 확장되며, C 영역은 무한 스크롤로 이어진다고 가정해봅시다. 이 경우 단순히 스크롤 Y 좌표만 저장해서는 원하는 복원 결과를 얻을 수 없습니다.
 
@@ -166,7 +166,7 @@ function restoreScroll(targetY) {
 무한 스크롤 페이지에서 스크롤 위치를 저장해두었다가 뒤로가기로 돌아오면, 단순히 scrollY 값을 복원하는 것만으로는 원하는 위치에 도달하기 어렵습니다.
 그 이유는 저장 당시의 문서 전체 높이(scrollHeight)와 뒤로가기로 돌아왔을 때 초기 로딩 상태의 높이가 다르기 때문인데요.
 
-![문서 전체 높이의 차이](/public/static/images/scroll-restoration/scroll-diff.png)
+![문서 전체 높이의 차이](/static/images/scroll-restoration/scroll-diff.png)
 
 예를 들어, 3페이지 분량까지 로드된 상태에서 스크롤 위치를 저장했더라도, 뒤로가기로 돌아왔을 때는 1페이지 분량만 렌더링돼 있으니 scrollTo(savedY)를 호출해도 해당 좌표까지는 도달할 수 없습니다.
 
@@ -199,7 +199,7 @@ function restoreScroll(targetY) {
 - 고정 높이 아이템: scrollTop ÷ itemHeight = index로 단순 계산
 - 가변 높이 아이템: 각 아이템 높이를 측정, 캐싱해 누적합으로 매핑
 
-![스크롤 가상화 다이어그램](/public/static/images/scroll-restoration/virtualized-scroll.png)
+![스크롤 가상화 다이어그램](/static/images/scroll-restoration/virtualized-scroll.png)
 
 이 방식 덕분에 스크롤 복원도 단순해집니다. 저장해둔 scrollTop만 그대로 복원하면, 해당 인덱스를 계산해 올바른 아이템을 뷰포트에 그릴 수 있기 때문입니다.
 
